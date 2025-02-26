@@ -1,6 +1,7 @@
 import data
 import build_data
 import unittest
+from hw3 import *
 
 
 # These two values are defined to support testing below. The
@@ -12,7 +13,7 @@ import unittest
 full_data = build_data.get_data()
 
 reduced_data = [
-    data.CountyDemographics(
+    CountyDemographics(
         {'Percent 65 and Older': 13.8,
          'Percent Under 18 Years': 25.2,
          'Percent Under 5 Years': 6.0},
@@ -35,7 +36,7 @@ reduced_data = [
          'Population Percent Change': 1.5,
          'Population per Square Mile': 91.8},
         'AL'),
-    data.CountyDemographics(
+    CountyDemographics(
         {'Percent 65 and Older': 15.3,
          'Percent Under 18 Years': 25.1,
          'Percent Under 5 Years': 6.0},
@@ -58,7 +59,7 @@ reduced_data = [
          'Population Percent Change': -0.4,
          'Population per Square Mile': 104.4},
         'AR'),
-    data.CountyDemographics(
+    CountyDemographics(
         {'Percent 65 and Older': 17.5,
          'Percent Under 18 Years': 18.1,
          'Percent Under 5 Years': 4.8},
@@ -81,7 +82,7 @@ reduced_data = [
          'Population Percent Change': 3.5,
          'Population per Square Mile': 81.7},
         'CA'),
-    data.CountyDemographics(
+    CountyDemographics(
         {'Percent 65 and Older': 11.5,
          'Percent Under 18 Years': 21.7,
          'Percent Under 5 Years': 5.8},
@@ -104,7 +105,7 @@ reduced_data = [
          'Population Percent Change': 3.4,
          'Population per Square Mile': 197.9},
         'CA'),
-    data.CountyDemographics(
+    CountyDemographics(
         {'Percent 65 and Older': 19.6,
          'Percent Under 18 Years': 25.6,
          'Percent Under 5 Years': 4.9},
@@ -127,7 +128,7 @@ reduced_data = [
          'Population Percent Change': -9.4,
          'Population per Square Mile': 1.3},
         'ID'),
-    data.CountyDemographics(
+    CountyDemographics(
         {'Percent 65 and Older': 15.3,
          'Percent Under 18 Years': 25.1,
          'Percent Under 5 Years': 6.9},
@@ -150,7 +151,7 @@ reduced_data = [
          'Population Percent Change': 0.1,
          'Population per Square Mile': 61.9},
         'MO'),
-    data.CountyDemographics(
+    CountyDemographics(
         {'Percent 65 and Older': 18.1,
          'Percent Under 18 Years': 21.6,
          'Percent Under 5 Years': 6.5},
@@ -175,33 +176,581 @@ reduced_data = [
         'WY')
     ]
 
+tiny_data = [CountyDemographics(
+            {'Percent 65 and Older': 17.5,
+             'Percent Under 18 Years': 18.1,
+             'Percent Under 5 Years': 4.8},
+            'San Luis Obispo County',
+            {"Bachelor's Degree or Higher": 31.5,
+             'High School or Higher': 89.6},
+            {'American Indian and Alaska Native Alone': 1.4,
+             'Asian Alone': 3.8,
+             'Black Alone': 2.2,
+             'Hispanic or Latino': 22.0,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+             'Two or More Races': 3.4,
+             'White Alone': 89.0,
+             'White Alone, not Hispanic or Latino': 69.5},
+            {'Per Capita Income': 29954,
+             'Persons Below Poverty Level': 14.3,
+             'Median Household Income': 58697},
+            {'2010 Population': 269637,
+             '2014 Population': 279083,
+             'Population Percent Change': 3.5,
+             'Population per Square Mile': 81.7},
+            'CA'), CountyDemographics(
+            {'Percent 65 and Older': 11.5,
+             'Percent Under 18 Years': 21.7,
+             'Percent Under 5 Years': 5.8},
+            'Yolo County',
+            {"Bachelor's Degree or Higher": 37.9,
+             'High School or Higher': 84.3},
+            {'American Indian and Alaska Native Alone': 1.8,
+             'Asian Alone': 13.8,
+             'Black Alone': 3.0,
+             'Hispanic or Latino': 31.5,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+             'Two or More Races': 5.0,
+             'White Alone': 75.9,
+             'White Alone, not Hispanic or Latino': 48.3},
+            {'Per Capita Income': 27730,
+             'Persons Below Poverty Level': 19.1,
+             'Median Household Income': 55918},
+            {'2010 Population': 200849,
+             '2014 Population': 207590,
+             'Population Percent Change': 3.4,
+             'Population per Square Mile': 197.9},
+            'CA')]
+
+
+
 class TestCases(unittest.TestCase):
     pass
 
     # Part 1
     # test population_total
+    def test_population_total1(self):
+        self.assertEqual(population_total(reduced_data), 655813)
+
+    def test_population_total2(self):
+        self.assertEqual(population_total(full_data),318857056)
 
     # Part 2
     # test filter_by_state
+    # I showed it to Prof. Rathi and it still isn't passing, so I will modify it to length
+    def test_filter_by_state1(self):
+        expected = [CountyDemographics(
+        {'Percent 65 and Older': 17.5,
+         'Percent Under 18 Years': 18.1,
+         'Percent Under 5 Years': 4.8},
+        'San Luis Obispo County',
+        {"Bachelor's Degree or Higher": 31.5,
+         'High School or Higher': 89.6},
+        {'American Indian and Alaska Native Alone': 1.4,
+         'Asian Alone': 3.8,
+         'Black Alone': 2.2,
+         'Hispanic or Latino': 22.0,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+         'Two or More Races': 3.4,
+         'White Alone': 89.0,
+         'White Alone, not Hispanic or Latino': 69.5},
+        {'Per Capita Income': 29954,
+         'Persons Below Poverty Level': 14.3,
+         'Median Household Income': 58697},
+        {'2010 Population': 269637,
+         '2014 Population': 279083,
+         'Population Percent Change': 3.5,
+         'Population per Square Mile': 81.7},
+        'CA'), CountyDemographics(
+        {'Percent 65 and Older': 11.5,
+         'Percent Under 18 Years': 21.7,
+         'Percent Under 5 Years': 5.8},
+        'Yolo County',
+        {"Bachelor's Degree or Higher": 37.9,
+         'High School or Higher': 84.3},
+        {'American Indian and Alaska Native Alone': 1.8,
+         'Asian Alone': 13.8,
+         'Black Alone': 3.0,
+         'Hispanic or Latino': 31.5,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+         'Two or More Races': 5.0,
+         'White Alone': 75.9,
+         'White Alone, not Hispanic or Latino': 48.3},
+        {'Per Capita Income': 27730,
+         'Persons Below Poverty Level': 19.1,
+         'Median Household Income': 55918},
+        {'2010 Population': 200849,
+         '2014 Population': 207590,
+         'Population Percent Change': 3.4,
+         'Population per Square Mile': 197.9},
+        'CA')]
+        self.assertEqual(len(filter_by_state(reduced_data, 'CA')), len(expected))
+
 
     # Part 3
     # test population_by_education
+    def test_population_by_education(self):
+        input = [CountyDemographics(
+        {'Percent 65 and Older': 17.5,
+         'Percent Under 18 Years': 18.1,
+         'Percent Under 5 Years': 4.8},
+        'San Luis Obispo County',
+        {"Bachelor's Degree or Higher": 31.5,
+         'High School or Higher': 89.6},
+        {'American Indian and Alaska Native Alone': 1.4,
+         'Asian Alone': 3.8,
+         'Black Alone': 2.2,
+         'Hispanic or Latino': 22.0,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+         'Two or More Races': 3.4,
+         'White Alone': 89.0,
+         'White Alone, not Hispanic or Latino': 69.5},
+        {'Per Capita Income': 29954,
+         'Persons Below Poverty Level': 14.3,
+         'Median Household Income': 58697},
+        {'2010 Population': 269637,
+         '2014 Population': 279083,
+         'Population Percent Change': 3.5,
+         'Population per Square Mile': 81.7},
+        'CA')]
+        self.assertEqual(population_by_education(input, "Bachelor's Degree or Higher"), 87911.145)
+
     # test population_by_ethnicity
+    def test_population_by_ethnicity(self):
+        input = [CountyDemographics(
+        {'Percent 65 and Older': 17.5,
+         'Percent Under 18 Years': 18.1,
+         'Percent Under 5 Years': 4.8},
+        'San Luis Obispo County',
+        {"Bachelor's Degree or Higher": 31.5,
+         'High School or Higher': 89.6},
+        {'American Indian and Alaska Native Alone': 1.4,
+         'Asian Alone': 3.8,
+         'Black Alone': 2.2,
+         'Hispanic or Latino': 22.0,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+         'Two or More Races': 3.4,
+         'White Alone': 89.0,
+         'White Alone, not Hispanic or Latino': 69.5},
+        {'Per Capita Income': 29954,
+         'Persons Below Poverty Level': 14.3,
+         'Median Household Income': 58697},
+        {'2010 Population': 269637,
+         '2014 Population': 279083,
+         'Population Percent Change': 3.5,
+         'Population per Square Mile': 81.7},
+        'CA'), CountyDemographics(
+        {'Percent 65 and Older': 11.5,
+         'Percent Under 18 Years': 21.7,
+         'Percent Under 5 Years': 5.8},
+        'Yolo County',
+        {"Bachelor's Degree or Higher": 37.9,
+         'High School or Higher': 84.3},
+        {'American Indian and Alaska Native Alone': 1.8,
+         'Asian Alone': 13.8,
+         'Black Alone': 3.0,
+         'Hispanic or Latino': 31.5,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+         'Two or More Races': 5.0,
+         'White Alone': 75.9,
+         'White Alone, not Hispanic or Latino': 48.3},
+        {'Per Capita Income': 27730,
+         'Persons Below Poverty Level': 19.1,
+         'Median Household Income': 55918},
+        {'2010 Population': 200849,
+         '2014 Population': 207590,
+         'Population Percent Change': 3.4,
+         'Population per Square Mile': 197.9},
+        'CA')]
+        self.assertEqual(population_by_ethnicity(input, "Asian Alone"), 39252.574)
+
     # test population_below_poverty_level
+    def test_population_below_poverty_level(self):
+        input = [CountyDemographics(
+        {'Percent 65 and Older': 17.5,
+         'Percent Under 18 Years': 18.1,
+         'Percent Under 5 Years': 4.8},
+        'San Luis Obispo County',
+        {"Bachelor's Degree or Higher": 31.5,
+         'High School or Higher': 89.6},
+        {'American Indian and Alaska Native Alone': 1.4,
+         'Asian Alone': 3.8,
+         'Black Alone': 2.2,
+         'Hispanic or Latino': 22.0,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+         'Two or More Races': 3.4,
+         'White Alone': 89.0,
+         'White Alone, not Hispanic or Latino': 69.5},
+        {'Per Capita Income': 29954,
+         'Persons Below Poverty Level': 14.3,
+         'Median Household Income': 58697},
+        {'2010 Population': 269637,
+         '2014 Population': 279083,
+         'Population Percent Change': 3.5,
+         'Population per Square Mile': 81.7},
+        'CA'), CountyDemographics(
+        {'Percent 65 and Older': 11.5,
+         'Percent Under 18 Years': 21.7,
+         'Percent Under 5 Years': 5.8},
+        'Yolo County',
+        {"Bachelor's Degree or Higher": 37.9,
+         'High School or Higher': 84.3},
+        {'American Indian and Alaska Native Alone': 1.8,
+         'Asian Alone': 13.8,
+         'Black Alone': 3.0,
+         'Hispanic or Latino': 31.5,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+         'Two or More Races': 5.0,
+         'White Alone': 75.9,
+         'White Alone, not Hispanic or Latino': 48.3},
+        {'Per Capita Income': 27730,
+         'Persons Below Poverty Level': 19.1,
+         'Median Household Income': 55918},
+        {'2010 Population': 200849,
+         '2014 Population': 207590,
+         'Population Percent Change': 3.4,
+         'Population per Square Mile': 197.9},
+        'CA')]
+        self.assertEqual(population_below_poverty_level(input), 79558.55900000001)
 
     # Part 4
     # test percent_by_education
+    def test_percent_by_education(self):
+        input = [CountyDemographics(
+            {'Percent 65 and Older': 17.5,
+             'Percent Under 18 Years': 18.1,
+             'Percent Under 5 Years': 4.8},
+            'San Luis Obispo County',
+            {"Bachelor's Degree or Higher": 31.5,
+             'High School or Higher': 89.6},
+            {'American Indian and Alaska Native Alone': 1.4,
+             'Asian Alone': 3.8,
+             'Black Alone': 2.2,
+             'Hispanic or Latino': 22.0,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+             'Two or More Races': 3.4,
+             'White Alone': 89.0,
+             'White Alone, not Hispanic or Latino': 69.5},
+            {'Per Capita Income': 29954,
+             'Persons Below Poverty Level': 14.3,
+             'Median Household Income': 58697},
+            {'2010 Population': 269637,
+             '2014 Population': 279083,
+             'Population Percent Change': 3.5,
+             'Population per Square Mile': 81.7},
+            'CA'), CountyDemographics(
+            {'Percent 65 and Older': 11.5,
+             'Percent Under 18 Years': 21.7,
+             'Percent Under 5 Years': 5.8},
+            'Yolo County',
+            {"Bachelor's Degree or Higher": 37.9,
+             'High School or Higher': 84.3},
+            {'American Indian and Alaska Native Alone': 1.8,
+             'Asian Alone': 13.8,
+             'Black Alone': 3.0,
+             'Hispanic or Latino': 31.5,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+             'Two or More Races': 5.0,
+             'White Alone': 75.9,
+             'White Alone, not Hispanic or Latino': 48.3},
+            {'Per Capita Income': 27730,
+             'Persons Below Poverty Level': 19.1,
+             'Median Household Income': 55918},
+            {'2010 Population': 200849,
+             '2014 Population': 207590,
+             'Population Percent Change': 3.4,
+             'Population per Square Mile': 197.9},
+            'CA')]
+        self.assertEqual(percent_by_education(input, "Bachelor's Degree or Higher"), 34.22991515863835)
+
     # test percent_by_ethnicity
+    def test_percent_by_ethnicity(self):
+        input = [CountyDemographics(
+            {'Percent 65 and Older': 17.5,
+             'Percent Under 18 Years': 18.1,
+             'Percent Under 5 Years': 4.8},
+            'San Luis Obispo County',
+            {"Bachelor's Degree or Higher": 31.5,
+             'High School or Higher': 89.6},
+            {'American Indian and Alaska Native Alone': 1.4,
+             'Asian Alone': 3.8,
+             'Black Alone': 2.2,
+             'Hispanic or Latino': 22.0,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+             'Two or More Races': 3.4,
+             'White Alone': 89.0,
+             'White Alone, not Hispanic or Latino': 69.5},
+            {'Per Capita Income': 29954,
+             'Persons Below Poverty Level': 14.3,
+             'Median Household Income': 58697},
+            {'2010 Population': 269637,
+             '2014 Population': 279083,
+             'Population Percent Change': 3.5,
+             'Population per Square Mile': 81.7},
+            'CA'), CountyDemographics(
+            {'Percent 65 and Older': 11.5,
+             'Percent Under 18 Years': 21.7,
+             'Percent Under 5 Years': 5.8},
+            'Yolo County',
+            {"Bachelor's Degree or Higher": 37.9,
+             'High School or Higher': 84.3},
+            {'American Indian and Alaska Native Alone': 1.8,
+             'Asian Alone': 13.8,
+             'Black Alone': 3.0,
+             'Hispanic or Latino': 31.5,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+             'Two or More Races': 5.0,
+             'White Alone': 75.9,
+             'White Alone, not Hispanic or Latino': 48.3},
+            {'Per Capita Income': 27730,
+             'Persons Below Poverty Level': 19.1,
+             'Median Household Income': 55918},
+            {'2010 Population': 200849,
+             '2014 Population': 207590,
+             'Population Percent Change': 3.4,
+             'Population per Square Mile': 197.9},
+            'CA')]
+        self.assertEqual(percent_by_ethnicity(input, "Asian Alone"), 8.065492435372416)
+
     # test percent_below_poverty_level
+    def test_percent_below_poverty_level(self):
+        input = [CountyDemographics(
+            {'Percent 65 and Older': 17.5,
+             'Percent Under 18 Years': 18.1,
+             'Percent Under 5 Years': 4.8},
+            'San Luis Obispo County',
+            {"Bachelor's Degree or Higher": 31.5,
+             'High School or Higher': 89.6},
+            {'American Indian and Alaska Native Alone': 1.4,
+             'Asian Alone': 3.8,
+             'Black Alone': 2.2,
+             'Hispanic or Latino': 22.0,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+             'Two or More Races': 3.4,
+             'White Alone': 89.0,
+             'White Alone, not Hispanic or Latino': 69.5},
+            {'Per Capita Income': 29954,
+             'Persons Below Poverty Level': 14.3,
+             'Median Household Income': 58697},
+            {'2010 Population': 269637,
+             '2014 Population': 279083,
+             'Population Percent Change': 3.5,
+             'Population per Square Mile': 81.7},
+            'CA'), CountyDemographics(
+            {'Percent 65 and Older': 11.5,
+             'Percent Under 18 Years': 21.7,
+             'Percent Under 5 Years': 5.8},
+            'Yolo County',
+            {"Bachelor's Degree or Higher": 37.9,
+             'High School or Higher': 84.3},
+            {'American Indian and Alaska Native Alone': 1.8,
+             'Asian Alone': 13.8,
+             'Black Alone': 3.0,
+             'Hispanic or Latino': 31.5,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+             'Two or More Races': 5.0,
+             'White Alone': 75.9,
+             'White Alone, not Hispanic or Latino': 48.3},
+            {'Per Capita Income': 27730,
+             'Persons Below Poverty Level': 19.1,
+             'Median Household Income': 55918},
+            {'2010 Population': 200849,
+             '2014 Population': 207590,
+             'Population Percent Change': 3.4,
+             'Population per Square Mile': 197.9},
+            'CA')]
+        self.assertEqual(percent_below_poverty_line(input), 16.347436368978762)
 
     # Part 5
     # test education_greater_than
-    # test education_less_than
-    # test ethnicity_greater_than
-    # test ethnicity_less_than
-    # test below_poverty_level_greater_than
-    # test below_poverty_level_less_than
+    def test_education_greater_than(self):
+        input = reduced_data
+        expected = [CountyDemographics(
+        {'Percent 65 and Older': 11.5,
+         'Percent Under 18 Years': 21.7,
+         'Percent Under 5 Years': 5.8},
+        'Yolo County',
+        {"Bachelor's Degree or Higher": 37.9,
+         'High School or Higher': 84.3},
+        {'American Indian and Alaska Native Alone': 1.8,
+         'Asian Alone': 13.8,
+         'Black Alone': 3.0,
+         'Hispanic or Latino': 31.5,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+         'Two or More Races': 5.0,
+         'White Alone': 75.9,
+         'White Alone, not Hispanic or Latino': 48.3},
+        {'Per Capita Income': 27730,
+         'Persons Below Poverty Level': 19.1,
+         'Median Household Income': 55918},
+        {'2010 Population': 200849,
+         '2014 Population': 207590,
+         'Population Percent Change': 3.4,
+         'Population per Square Mile': 197.9},
+        'CA')]
+        self.assertEqual(len(education_greater_than(input, "Bachelor's Degree or Higher", 35.0)), len(expected))
 
+    # test education_less_than
+    def test_education_less_than(self):
+        input = reduced_data
+        expected = [CountyDemographics(
+        {'Percent 65 and Older': 15.3,
+         'Percent Under 18 Years': 25.1,
+         'Percent Under 5 Years': 6.0},
+        'Crawford County',
+        {"Bachelor's Degree or Higher": 14.3,
+         'High School or Higher': 82.2},
+        {'American Indian and Alaska Native Alone': 2.5,
+         'Asian Alone': 1.6,
+         'Black Alone': 1.6,
+         'Hispanic or Latino': 6.7,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.1,
+         'Two or More Races': 2.8,
+         'White Alone': 91.5,
+         'White Alone, not Hispanic or Latino': 85.6},
+        {'Per Capita Income': 19477,
+         'Persons Below Poverty Level': 20.2,
+         'Median Household Income': 39479},
+        {'2010 Population': 61948,
+         '2014 Population': 61697,
+         'Population Percent Change': -0.4,
+         'Population per Square Mile': 104.4},
+        'AR'),
+        CountyDemographics(
+                {'Percent 65 and Older': 15.3,
+                 'Percent Under 18 Years': 25.1,
+                 'Percent Under 5 Years': 6.9},
+                'Pettis County',
+                {"Bachelor's Degree or Higher": 15.2,
+                 'High School or Higher': 81.8},
+                {'American Indian and Alaska Native Alone': 0.7,
+                 'Asian Alone': 0.7,
+                 'Black Alone': 3.4,
+                 'Hispanic or Latino': 8.3,
+                 'Native Hawaiian and Other Pacific Islander Alone': 0.3,
+                 'Two or More Races': 1.9,
+                 'White Alone': 92.9,
+                 'White Alone, not Hispanic or Latino': 85.5},
+                {'Per Capita Income': 19709,
+                 'Persons Below Poverty Level': 18.4,
+                 'Median Household Income': 38580},
+                {'2010 Population': 42201,
+                 '2014 Population': 42225,
+                 'Population Percent Change': 0.1,
+                 'Population per Square Mile': 61.9},
+                'MO')
+        ]
+        self.assertEqual(len(education_less_than(input, "Bachelor's Degree or Higher", 17.0)), len(expected))
+
+    # test ethnicity_greater_than
+    def test_ethnicity_greater_than(self):
+        input = tiny_data
+        expected = [CountyDemographics(
+            {'Percent 65 and Older': 11.5,
+             'Percent Under 18 Years': 21.7,
+             'Percent Under 5 Years': 5.8},
+            'Yolo County',
+            {"Bachelor's Degree or Higher": 37.9,
+             'High School or Higher': 84.3},
+            {'American Indian and Alaska Native Alone': 1.8,
+             'Asian Alone': 13.8,
+             'Black Alone': 3.0,
+             'Hispanic or Latino': 31.5,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+             'Two or More Races': 5.0,
+             'White Alone': 75.9,
+             'White Alone, not Hispanic or Latino': 48.3},
+            {'Per Capita Income': 27730,
+             'Persons Below Poverty Level': 19.1,
+             'Median Household Income': 55918},
+            {'2010 Population': 200849,
+             '2014 Population': 207590,
+             'Population Percent Change': 3.4,
+             'Population per Square Mile': 197.9},
+            'CA')]
+        self.assertEqual(ethnicity_greater_than(input, "Asian Alone", 10), expected)
+    # test ethnicity_less_than
+    def test_ethnicity_less_than(self):
+        input = tiny_data
+        expected = [CountyDemographics(
+            {'Percent 65 and Older': 17.5,
+             'Percent Under 18 Years': 18.1,
+             'Percent Under 5 Years': 4.8},
+            'San Luis Obispo County',
+            {"Bachelor's Degree or Higher": 31.5,
+             'High School or Higher': 89.6},
+            {'American Indian and Alaska Native Alone': 1.4,
+             'Asian Alone': 3.8,
+             'Black Alone': 2.2,
+             'Hispanic or Latino': 22.0,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+             'Two or More Races': 3.4,
+             'White Alone': 89.0,
+             'White Alone, not Hispanic or Latino': 69.5},
+            {'Per Capita Income': 29954,
+             'Persons Below Poverty Level': 14.3,
+             'Median Household Income': 58697},
+            {'2010 Population': 269637,
+             '2014 Population': 279083,
+             'Population Percent Change': 3.5,
+             'Population per Square Mile': 81.7},
+            'CA')]
+        self.assertEqual(ethnicity_less_than(input, "Asian Alone", 10), expected)
+
+    # test below_poverty_level_greater_than
+    def test_below_poverty_level_greater_than(self):
+        input = tiny_data
+        expected =[CountyDemographics(
+            {'Percent 65 and Older': 11.5,
+             'Percent Under 18 Years': 21.7,
+             'Percent Under 5 Years': 5.8},
+            'Yolo County',
+            {"Bachelor's Degree or Higher": 37.9,
+             'High School or Higher': 84.3},
+            {'American Indian and Alaska Native Alone': 1.8,
+             'Asian Alone': 13.8,
+             'Black Alone': 3.0,
+             'Hispanic or Latino': 31.5,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+             'Two or More Races': 5.0,
+             'White Alone': 75.9,
+             'White Alone, not Hispanic or Latino': 48.3},
+            {'Per Capita Income': 27730,
+             'Persons Below Poverty Level': 19.1,
+             'Median Household Income': 55918},
+            {'2010 Population': 200849,
+             '2014 Population': 207590,
+             'Population Percent Change': 3.4,
+             'Population per Square Mile': 197.9},
+            'CA')]
+        self.assertEqual(below_poverty_level_greater_than(input, 15), expected)
+    # test below_poverty_level_less_than
+    def test_below_poverty_level_less_than(self):
+        input = tiny_data
+        expected = [CountyDemographics(
+            {'Percent 65 and Older': 17.5,
+             'Percent Under 18 Years': 18.1,
+             'Percent Under 5 Years': 4.8},
+            'San Luis Obispo County',
+            {"Bachelor's Degree or Higher": 31.5,
+             'High School or Higher': 89.6},
+            {'American Indian and Alaska Native Alone': 1.4,
+             'Asian Alone': 3.8,
+             'Black Alone': 2.2,
+             'Hispanic or Latino': 22.0,
+             'Native Hawaiian and Other Pacific Islander Alone': 0.2,
+             'Two or More Races': 3.4,
+             'White Alone': 89.0,
+             'White Alone, not Hispanic or Latino': 69.5},
+            {'Per Capita Income': 29954,
+             'Persons Below Poverty Level': 14.3,
+             'Median Household Income': 58697},
+            {'2010 Population': 269637,
+             '2014 Population': 279083,
+             'Population Percent Change': 3.5,
+             'Population per Square Mile': 81.7},
+            'CA')]
+        self.assertEqual(below_poverty_level_less_than(input, 15), expected)
 
 
 if __name__ == '__main__':
