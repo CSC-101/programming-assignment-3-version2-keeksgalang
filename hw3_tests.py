@@ -595,7 +595,6 @@ class TestCases(unittest.TestCase):
         self.assertEqual(len(education_less_than(input, "Bachelor's Degree or Higher", 17.0)), len(expected))
 
     # test ethnicity_greater_than
-
     # test ethnicity_less_than
 
     # test below_poverty_level_greater_than

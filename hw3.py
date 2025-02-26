@@ -120,3 +120,51 @@ def education_less_than(lst: list[CountyDemographics], education_type:str, thres
                     new_list.append(item)
 
     return new_list
+
+def ethnicity_greater_than(lst: list[CountyDemographics], ethnicity_type:str, threshold:float) -> list[CountyDemographics]:
+    new_list = []
+    for item in lst:
+        eth_population = item.ethnicities
+        for key in eth_population:
+            if key == ethnicity_type:
+                percentage = eth_population[key]
+                if percentage > threshold:
+                    new_list.append(item)
+
+    return new_list
+
+def ethnicity_less_than(lst: list[CountyDemographics], ethnicity_type:str, threshold:float) -> list[CountyDemographics]:
+    new_list = []
+    for item in lst:
+        eth_population = item.ethnicities
+        for key in eth_population:
+            if key == ethnicity_type:
+                percentage = eth_population[key]
+                if percentage < threshold:
+                    new_list.append(item)
+
+    return new_list
+
+def below_poverty_level_greater_than(lst: list[CountyDemographics], threshold:float) -> list[CountyDemographics]:
+    new_list = []
+    for item in lst:
+        pov_population = item.income
+        for key in pov_population:
+            if key == "Persons Below Poverty Level":
+                percentage = pov_population[key]
+                if percentage > threshold:
+                    new_list.append(item)
+
+    return new_list
+
+def below_poverty_level_less_than(lst: list[CountyDemographics], threshold:float) -> list:
+    new_list = []
+    for item in lst:
+        pov_population = item.income
+        for key in pov_population:
+            if key == "Persons Below Poverty Level":
+                percentage = pov_population[key]
+                if percentage < threshold:
+                    new_list.append(item)
+
+    return new_list
