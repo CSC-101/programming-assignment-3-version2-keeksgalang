@@ -515,10 +515,91 @@ class TestCases(unittest.TestCase):
 
     # Part 5
     # test education_greater_than
+    def test_education_greater_than(self):
+        input = reduced_data
+        expected = [CountyDemographics(
+        {'Percent 65 and Older': 11.5,
+         'Percent Under 18 Years': 21.7,
+         'Percent Under 5 Years': 5.8},
+        'Yolo County',
+        {"Bachelor's Degree or Higher": 37.9,
+         'High School or Higher': 84.3},
+        {'American Indian and Alaska Native Alone': 1.8,
+         'Asian Alone': 13.8,
+         'Black Alone': 3.0,
+         'Hispanic or Latino': 31.5,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.6,
+         'Two or More Races': 5.0,
+         'White Alone': 75.9,
+         'White Alone, not Hispanic or Latino': 48.3},
+        {'Per Capita Income': 27730,
+         'Persons Below Poverty Level': 19.1,
+         'Median Household Income': 55918},
+        {'2010 Population': 200849,
+         '2014 Population': 207590,
+         'Population Percent Change': 3.4,
+         'Population per Square Mile': 197.9},
+        'CA')]
+        self.assertEqual(len(education_greater_than(input, "Bachelor's Degree or Higher", 35.0)), len(expected))
+
     # test education_less_than
+    def test_education_less_than(self):
+        input = reduced_data
+        expected = [CountyDemographics(
+        {'Percent 65 and Older': 15.3,
+         'Percent Under 18 Years': 25.1,
+         'Percent Under 5 Years': 6.0},
+        'Crawford County',
+        {"Bachelor's Degree or Higher": 14.3,
+         'High School or Higher': 82.2},
+        {'American Indian and Alaska Native Alone': 2.5,
+         'Asian Alone': 1.6,
+         'Black Alone': 1.6,
+         'Hispanic or Latino': 6.7,
+         'Native Hawaiian and Other Pacific Islander Alone': 0.1,
+         'Two or More Races': 2.8,
+         'White Alone': 91.5,
+         'White Alone, not Hispanic or Latino': 85.6},
+        {'Per Capita Income': 19477,
+         'Persons Below Poverty Level': 20.2,
+         'Median Household Income': 39479},
+        {'2010 Population': 61948,
+         '2014 Population': 61697,
+         'Population Percent Change': -0.4,
+         'Population per Square Mile': 104.4},
+        'AR'),
+            CountyDemographics(
+                {'Percent 65 and Older': 15.3,
+                 'Percent Under 18 Years': 25.1,
+                 'Percent Under 5 Years': 6.9},
+                'Pettis County',
+                {"Bachelor's Degree or Higher": 15.2,
+                 'High School or Higher': 81.8},
+                {'American Indian and Alaska Native Alone': 0.7,
+                 'Asian Alone': 0.7,
+                 'Black Alone': 3.4,
+                 'Hispanic or Latino': 8.3,
+                 'Native Hawaiian and Other Pacific Islander Alone': 0.3,
+                 'Two or More Races': 1.9,
+                 'White Alone': 92.9,
+                 'White Alone, not Hispanic or Latino': 85.5},
+                {'Per Capita Income': 19709,
+                 'Persons Below Poverty Level': 18.4,
+                 'Median Household Income': 38580},
+                {'2010 Population': 42201,
+                 '2014 Population': 42225,
+                 'Population Percent Change': 0.1,
+                 'Population per Square Mile': 61.9},
+                'MO')
+        ]
+        self.assertEqual(len(education_less_than(input, "Bachelor's Degree or Higher", 17.0)), len(expected))
+
     # test ethnicity_greater_than
+
     # test ethnicity_less_than
+
     # test below_poverty_level_greater_than
+
     # test below_poverty_level_less_than
 
 

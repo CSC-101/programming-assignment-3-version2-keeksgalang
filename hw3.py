@@ -97,3 +97,26 @@ def percent_below_poverty_line(lst: list[CountyDemographics]) -> float:
         return 0
 
 # Task 5
+def education_greater_than(lst: list[CountyDemographics], education_type:str, threshold:float) -> list[CountyDemographics]:
+    new_list = []
+    for item in lst:
+        edu_population = item.education
+        for key in edu_population:
+            if key == education_type:
+                percentage = edu_population[key]
+                if percentage > threshold:
+                    new_list.append(item)
+
+    return new_list
+
+def education_less_than(lst: list[CountyDemographics], education_type:str, threshold:float) -> list[CountyDemographics]:
+    new_list = []
+    for item in lst:
+        edu_population = item.education
+        for key in edu_population:
+            if key == education_type:
+                percentage = edu_population[key]
+                if percentage < threshold:
+                    new_list.append(item)
+
+    return new_list
