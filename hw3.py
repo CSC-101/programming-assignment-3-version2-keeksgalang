@@ -3,6 +3,9 @@ from county_demographics import *
 from data import *
 
 # Task 1
+# This function takes the total population from a list of counties and adds them up.
+# Input: list[CountyDemographics]
+# Output: int
 def population_total(lst: list[CountyDemographics]) -> int:
     total = 0
     for item in lst:
@@ -14,6 +17,9 @@ def population_total(lst: list[CountyDemographics]) -> int:
     return total
 
 # Task 2
+# This function takes the counties within a certain state and adds them to a list.
+# Input: list[CountyDemographics], str
+# Output: list[CountyDemographics]
 def filter_by_state(lst: list[CountyDemographics], state:str) -> list[CountyDemographics]:
     new_list = []
     for item in lst:
@@ -23,6 +29,10 @@ def filter_by_state(lst: list[CountyDemographics], state:str) -> list[CountyDemo
     return new_list
 
 # Task 3
+# This function takes the percentage of people with a certain type of education and calculates the number of people
+# who have that certain education based on the total 2014 population.
+# Input: list[CountyDemographics], str
+# Output: float
 def population_by_education(lst: list[CountyDemographics], education_type:str) -> float:
     edu_total = 0
     for item in lst:
@@ -39,6 +49,10 @@ def population_by_education(lst: list[CountyDemographics], education_type:str) -
 
     return edu_total
 
+# This function takes the percentage of people with a certain ethnicity and calculates the number of people
+# who have that certain ethnicity based on the total 2014 population.
+# Input: list[CountyDemographics], str
+# Output: float
 def population_by_ethnicity(lst: list[CountyDemographics], ethnicity_type:str) -> float:
     eth_total = 0
     for item in lst:
@@ -55,6 +69,10 @@ def population_by_ethnicity(lst: list[CountyDemographics], ethnicity_type:str) -
 
     return eth_total
 
+# This function takes the percentage of people below the poverty line and calculates the number of people
+# who have are under the poverty line based on the total 2014 population.
+# Input: list[CountyDemographics]
+# Output: float
 def population_below_poverty_level(lst: list[CountyDemographics]) -> float:
     pov_total = 0
     for item in lst:
@@ -72,6 +90,10 @@ def population_below_poverty_level(lst: list[CountyDemographics]) -> float:
     return pov_total
 
 # Task 4
+# This function takes the population of people with a certain type of education in the entire list and divides it by the total
+# population of the list to find the average percentage of people with that type of education.
+# Input: list[CountyDemographics], str
+# Output: float
 def percent_by_education(lst: list[CountyDemographics], education_type:str) -> float:
     try:
         edu_population = population_by_education(lst, education_type)
@@ -80,6 +102,10 @@ def percent_by_education(lst: list[CountyDemographics], education_type:str) -> f
     except ValueError:
         return 0
 
+# This function takes the population of people with a certain ethnicity in the entire list and divides it by the total
+# population of the list to find the average percentage of people with that ethnicity.
+# Input: list[CountyDemographics], str
+# Output: float
 def percent_by_ethnicity(lst: list[CountyDemographics], ethnicity_type:str) -> float:
     try:
         eth_population = population_by_ethnicity(lst, ethnicity_type)
@@ -88,6 +114,10 @@ def percent_by_ethnicity(lst: list[CountyDemographics], ethnicity_type:str) -> f
     except ValueError:
         return 0
 
+# This function takes the population of people below the poverty line in the entire list and divides it by the total
+# population of the list to find the average percentage of people below the poverty line.
+# Input: list[CountyDemographics]
+# Output: float
 def percent_below_poverty_line(lst: list[CountyDemographics]) -> float:
     try:
         pov_population = population_below_poverty_level(lst)
@@ -97,6 +127,10 @@ def percent_below_poverty_line(lst: list[CountyDemographics]) -> float:
         return 0
 
 # Task 5
+# This function filters a list of counties above certain threshold and compares the percentage of that type of
+# education to the threshold to see if it is larger than the threshold.
+# Input: list[CountyDemographics], str, float
+# Output: list[CountyDemographics]
 def education_greater_than(lst: list[CountyDemographics], education_type:str, threshold:float) -> list[CountyDemographics]:
     new_list = []
     for item in lst:
@@ -109,6 +143,10 @@ def education_greater_than(lst: list[CountyDemographics], education_type:str, th
 
     return new_list
 
+# This function filters a list of counties below certain threshold and compares the percentage of that type of
+# education to the threshold to see if it is smaller than the threshold.
+# Input: list[CountyDemographics], str, float
+# Output: list[CountyDemographics]
 def education_less_than(lst: list[CountyDemographics], education_type:str, threshold:float) -> list[CountyDemographics]:
     new_list = []
     for item in lst:
@@ -121,6 +159,10 @@ def education_less_than(lst: list[CountyDemographics], education_type:str, thres
 
     return new_list
 
+# This function filters a list of counties above certain threshold and compares the percentage of that
+# ethnicity to the threshold to see if it is larger than the threshold.
+# Input: list[CountyDemographics], str, float
+# Output: list[CountyDemographics]
 def ethnicity_greater_than(lst: list[CountyDemographics], ethnicity_type:str, threshold:float) -> list[CountyDemographics]:
     new_list = []
     for item in lst:
@@ -133,6 +175,10 @@ def ethnicity_greater_than(lst: list[CountyDemographics], ethnicity_type:str, th
 
     return new_list
 
+# This function filters a list of counties below certain threshold and compares the percentage of that
+# ethnicity to the threshold to see if it is smaller than the threshold.
+# Input: list[CountyDemographics], str, float
+# Output: list[CountyDemographics]
 def ethnicity_less_than(lst: list[CountyDemographics], ethnicity_type:str, threshold:float) -> list[CountyDemographics]:
     new_list = []
     for item in lst:
@@ -145,6 +191,10 @@ def ethnicity_less_than(lst: list[CountyDemographics], ethnicity_type:str, thres
 
     return new_list
 
+# This function filters a list of counties above certain threshold and compares the percentage of people
+# below the poverty line to the threshold to see if it is larger than the threshold.
+# Input: list[CountyDemographics], str, float
+# Output: list[CountyDemographics]
 def below_poverty_level_greater_than(lst: list[CountyDemographics], threshold:float) -> list[CountyDemographics]:
     new_list = []
     for item in lst:
@@ -157,6 +207,10 @@ def below_poverty_level_greater_than(lst: list[CountyDemographics], threshold:fl
 
     return new_list
 
+# This function filters a list of counties below certain threshold and compares the percentage of people
+# below the poverty line to the threshold to see if it is smaller than the threshold.
+# Input: list[CountyDemographics], str, float
+# Output: list[CountyDemographics]
 def below_poverty_level_less_than(lst: list[CountyDemographics], threshold:float) -> list:
     new_list = []
     for item in lst:
